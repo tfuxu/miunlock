@@ -27,9 +27,9 @@ r = UnlockRequest(auth, "unlock.update.miui.com", "/api/v3/unlock/userinfo", {
   "data":{
     "uid":auth.userid,
     "clientId":"1",
-    "clientVersion":"5.5.224.24",
+    "clientVersion":"6.5.406.31",
     "language":"en",
-    "pcId":hashlib.md5(auth.pcid.encode("utf-8")).hexdigest(),
+    "pcId":auth.pcid,
     "region":"",
 }})
 r.add_nonce()
@@ -77,9 +77,9 @@ r = UnlockRequest(auth, "unlock.update.miui.com", "/api/v2/unlock/device/clear",
   "appId":"1",
   "data":{
     "clientId":"1",
-    "clientVersion":"5.5.224.24",
+    "clientVersion":"6.5.406.31",
     "language":"en",
-    "pcId":hashlib.md5(auth.pcid.encode("utf-8")).hexdigest(),
+    "pcId":auth.pcid,
     "product":product,
     "region":"",
 }})
@@ -92,11 +92,11 @@ input("Press Ctrl-C to cancel, or enter to continue. ")
 r = UnlockRequest(auth, "unlock.update.miui.com", "/api/v3/ahaUnlock", {
   "appId":"1",
   "data":{
-    "clientId":"2", # updated client id
-    "clientVersion":"5.5.224.24", # updated version number
+    "clientId":"2",
+    "clientVersion":"6.5.406.31",
     "language":"en",
     "operate":"unlock",
-    "pcId":hashlib.md5(auth.pcid.encode("utf-8")).hexdigest(),
+    "pcId":auth.pcid,
     "product":product,
     "region":"",
     "deviceInfo":{

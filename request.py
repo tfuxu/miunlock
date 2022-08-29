@@ -60,7 +60,13 @@ class Auth():
         logging.debug("auth data %s", self.__dict__)
         if response.json()["S"] != "OK":
             raise XiaomiError("redir gave not-ok json", 5)
-        self.pcid = "wb_" + str(uuid.uuid4())
+        if self.location[37:39] == "wb":
+            self.pcid = self.location[37:76]
+        elif self.location[37:39] == "bl":
+            self.pcid = self.location[37:72]
+        else:
+            pcid_end = self.location.index("&ticket")
+            raise UserError(f"Unknown pcId: {self.location[37:pcid_end]}", 5)
         return True
 
 class UnlockRequest:
